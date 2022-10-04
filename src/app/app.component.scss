@@ -1,0 +1,116 @@
+
+// Pdf styles
+pdf-viewer {
+    width: 100%;
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+::ng-deep .ng2-pdf-viewer-container{
+    padding: 10px;
+}
+
+::ng-deep .page {
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important; 
+}
+
+::ng-deep .inputField {
+    width: 100%; 
+    height: 100%;
+    margin: 0;
+    left: 0; 
+    border-radius: 0;
+    font-size: 10px;
+    outline: none;
+    background: transparent;
+    position: absolute; 
+    border: none;
+}
+
+::ng-deep .inputFieldContainer {
+    z-index: 100; 
+    position: absolute; 
+    background-color: transparent; 
+    border: 2px solid blue;
+    background: transparent;
+}
+
+::ng-deep .inputFieldContainer:has(input[type=text])  {
+    border-top: none;
+    border-left: none;
+}
+
+::ng-deep .inputFieldContainer:has(input[type=signature])  {
+    border-top: none;
+    border-left: none;
+    border-color: red;
+}
+
+// zoom buttons style
+button {
+    position: fixed;
+    outline: none !important;
+}
+
+.mat-fab.mat-custom {
+    background-color: #ef7c00;
+    color: white;
+}
+
+.buttonPlus {
+    bottom: 7rem;
+    right: 2.5rem;
+}
+
+.buttonMinus {
+    bottom: 3rem;
+    right: 2.5rem;
+}
+
+// Select file style
+.file-input {
+    margin: 30px;
+}
+
+.file {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+  }
+  
+  .file-input label {
+    display: block;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    background: linear-gradient(40deg,#ef6800,#ffbf79);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s ease-out;
+  }
+  
+  .file-name {
+    position: absolute;
+    bottom: -35px;
+    left: 10px;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  input:hover + label,
+  input:focus + label {
+    transform: scale(1.02);
+  }
+  
+  /* Adding an outline to the label on focus */
+  input:focus + label {
+    outline: 1px solid #000;
+    outline: -webkit-focus-ring-color auto 2px;
+  }
