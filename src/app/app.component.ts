@@ -84,34 +84,26 @@ export class AppComponent {
     this.afterLoadComplete(this.pdf);
   }
 
-  public pageRendered(e: any) {
-    if (e.pageNumber >= 2) {
-      this.showLoadingSpinner = false;
-      this.loadInputs = true;
-    }
-  }
-
   public afterLoadComplete(pdf: PDFDocumentProxy): void {
     this.pdf = pdf;
+    this.showLoadingSpinner = false;
     this.inputFields = [];
-    this.waitForUpdate(_ => this.loadInputs === true).then(_ => {
-      for (let i = 1; i <= pdf.numPages; i++) {
-        let currentPage = null;
-        pdf.getPage(i).then(p => {
-          currentPage = p;
-          return p.getAnnotations();
-        }).then(ann => {
-          const annotations = (<any>ann) as PDFAnnotationData[];
-          annotations.filter(annotation => annotation.subtype === 'Widget')
-            .forEach(annotation => {
-              this.inputFields.push(annotation);
-              setTimeout(() => {
-                this.addInput(currentPage, annotation, i);
-              });
-            });
-        });
-      }
-    });
+    for (let i = 1; i <= pdf.numPages; i++) {
+      let currentPage = null;
+      pdf.getPage(i).then(p => {
+        currentPage = p;
+        return p.getAnnotations();
+      }).then(ann => {
+        const annotations = (<any>ann) as PDFAnnotationData[];
+        annotations.filter(annotation => annotation.subtype === 'Widget')
+          .forEach(annotation => {
+            this.inputFields.push(annotation);
+            setTimeout(() => {
+              this.addInput(currentPage, annotation, i);
+            }, 250);
+          });
+      });
+    }
   }
 
   public calculateScale(w1, w2) {
