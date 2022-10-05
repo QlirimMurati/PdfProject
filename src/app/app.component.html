@@ -5,6 +5,15 @@
       <p class="file-name"></p>
     </label>
   </div>
+
+    <mat-form-field class="searchPdf">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="pdfSearchValue" (input)="search($event.target.value)"
+          placeholder="Find in Pdf">
+      <mat-icon *ngIf="pdfSearchValue" matSuffix (click)="pdfSearchValue=''; search('')">
+          close</mat-icon>
+      <mat-icon *ngIf="!pdfSearchValue" matSuffix>search</mat-icon>
+    </mat-form-field>
     
     <pdf-viewer id="viewer" 
       class="pdf-viewer"  

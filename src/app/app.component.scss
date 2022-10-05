@@ -69,6 +69,7 @@ button {
 
 // Select file style
 .file-input {
+    width: 200px;
     margin: 30px;
 }
 
@@ -76,6 +77,7 @@ button {
     opacity: 0;
     width: 0.1px;
     height: 0.1px;
+    width: 200px;
     position: absolute;
   }
   
@@ -113,4 +115,34 @@ button {
   input:focus + label {
     outline: 1px solid #000;
     outline: -webkit-focus-ring-color auto 2px;
+  }
+
+  /* input search */
+  .searchPdf {
+    top: 30px;
+    right: 30px;
+    position: absolute;
+    width: 18%;
+    font-size: 16px;
+  }
+  
+  .searchPdf mat-icon {
+    vertical-align: middle;
+  }
+  
+  .searchPdf mat-icon:hover {
+    cursor: pointer;
+    background-color: rgb(253, 249, 249);
+  }
+
+  ::ng-deep .mat-focused .mat-form-field-label {
+    color: #ef7c00 !important;
+   }
+  
+   ::ng-deep.mat-form-field-underline {
+    background-color: #ef7c00 !important;
+  } 
+  
+  ::ng-deep.mat-form-field-ripple {
+   background-color: #ef7c00 !important;
   }

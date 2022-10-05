@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { PDFDocumentProxy } from 'ng2-pdf-viewer';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { PDFDocumentProxy, PdfViewerComponent } from 'ng2-pdf-viewer';
 import { pdfFile } from './pdfFile'
 
 @Component({
@@ -8,6 +8,7 @@ import { pdfFile } from './pdfFile'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild(PdfViewerComponent) private pdfComponent: PdfViewerComponent;
   public pdfSrc = this.base64ToArrayBuffer(pdfFile);
   public zoomValue = 1.1;
   public disableZoom = false;
@@ -16,6 +17,7 @@ export class AppComponent {
   public zoom = false;
   public loadInputs = false;
   public showLoadingSpinner = true;
+  public pdfSearchValue = "";
 
   constructor(private elRef: ElementRef) {}
 
@@ -104,6 +106,12 @@ export class AppComponent {
           });
       });
     }
+  }
+
+  search(stringToSearch: string) {
+    this.pdfComponent.eventBus.dispatch('find', {
+      query: stringToSearch, type: 'again', caseSensitive: false, findPrevious: undefined, highlightAll: true, phraseSearch: true
+    });
   }
 
   public calculateScale(w1, w2) {
